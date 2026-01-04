@@ -34,7 +34,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     header('Location: /quizwars/pages/signup.php');
     exit;
 } else {
-    $stm = $pdo->prepare('SELECT id FROM users WHERE email = ? LIMIT 1');
+    $stm = $pdo->prepare('SELECT user_id FROM users WHERE email = ? LIMIT 1');
     $stm->execute([$email]);
     if ($stm->fetch()) {
         $errors[] = 'Email already used';
@@ -48,7 +48,7 @@ if (!preg_match('/^[a-zA-Z0-9_.]{3,20}$/', $username)) {
     header('Location: /quizwars/pages/signup.php');
     exit;
 } else {
-    $stm = $pdo->prepare('SELECT id FROM users WHERE username = ? LIMIT 1');
+    $stm = $pdo->prepare('SELECT user_id FROM users WHERE username = ? LIMIT 1');
     $stm->execute([$username]);
 
     if ($stm->fetch()) {
@@ -87,7 +87,7 @@ if ($errors) {
 $hash = password_hash($password, PASSWORD_DEFAULT);
 
 try {
-    $stm = $pdo->prepare('INSERT INTO users (email, username, password_hash) VALUES (?, ?, ?)');
+    $stm = $pdo->prepare('INSERT INTO users (email, username, password) VALUES (?, ?, ?)');
     $stm->execute([$email, $username, $hash]);
 
     header('Location: /quizwars/pages/login.php');

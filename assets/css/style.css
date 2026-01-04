@@ -2,25 +2,49 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
-    line-height: 1.5;
+}
+
+html {
+    height: 100%;
 }
 
 body {
-    font-family:'Times New Roman', Times, serif;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Times New Roman', Times, serif;
     line-height: 1.5;
+    /* full screen height */
+    min-height: 100vh;
+    background: url('../mainbg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+    height: 100%;
 }
 
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* adjust transparency here */
+    background: rgba(0, 0, 0, 0.6);
+    /* stays behind all content */
+    z-index: -1;
+    pointer-events: none;
+}
 
 main {
     max-width: 900px;
     margin: 24px auto;
-    padding: 0 16px;
-}
-
-footer {
-    padding-left: 16px;
-    padding-right: 16px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    /* subtle transparency */
+    color: #fff;
+    /* white text for visibility */
+    border-radius: 8px;
+    flex: 1;
 }
 
 h1 {
@@ -36,7 +60,8 @@ p {
     margin: 8px 0;
 }
 
-ul, ol {
+ul,
+ol {
     list-style: none;
 }
 
@@ -60,7 +85,7 @@ a:hover {
 
 nav a {
     text-decoration: none;
-    color:white;
+    color: white;
 }
 
 a:focus-visible {
@@ -73,16 +98,21 @@ nav a:focus-visible {
 }
 
 nav a:hover {
-    color:#ffe8a3;
+    color: #ffe8a3;
     text-decoration: none;
 }
 
 footer {
-    display: flex;
-    justify-content: center;
-    padding: 10px;
-    background: #f2f2f2;
-    border-top: 1px solid #e0e0e0;
+    text-align: center;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #eee;
+}
+
+
+footer a {
+    color: #fff;
+    /* visible over dark background */
 }
 
 form {
@@ -96,7 +126,10 @@ label {
     font-weight: 600;
 }
 
-input, select, textarea, button {
+input,
+select,
+textarea,
+button {
     font: inherit;
     padding: 8px 10px;
     border: 1px solid #ccc;
@@ -105,47 +138,48 @@ input, select, textarea, button {
 
 /* Game Board */
 #board {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
-  margin: 24px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
 }
 
 .category {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 12px;
-  text-align: center;
-  background: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+    background: #f9f9f9;
 }
 
 .category h2 {
-  margin-bottom: 12px;
+    margin-bottom: 12px;
 }
 
 .q-btn {
-  display: inline-block;
-  margin: 4px;
-  padding: 10px 16px;
-  font-weight: bold;
-  border: none;
-  border-radius: 6px;
-  background-color: cadetblue;
-  color: white;
-  cursor: pointer;
+    display: inline-block;
+    margin: 4px;
+    padding: 10px 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    background-color: cadetblue;
+    color: white;
+    cursor: pointer;
 }
 
 .q-btn:hover {
-  background-color: #4682a9;
+    background-color: #4682a9;
 }
 
 #question-panel {
-  margin-top: 24px;
-  padding: 16px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background: #fffdf5;
+    margin-top: 24px;
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fffdf5;
 }
+
 button {
     cursor: pointer;
     background: #111;
@@ -164,8 +198,8 @@ button:focus-visible {
 
 #browse-filters {
     display: grid;
-    grid-auto-flow: column; 
-    gap: 12px; 
+    grid-auto-flow: column;
+    gap: 12px;
     align-items: center;
 }
 

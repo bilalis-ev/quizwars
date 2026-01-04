@@ -34,11 +34,11 @@ if ($errors) {
     exit;
 }
 
-$stm = $pdo->prepare('SELECT id, username, email, password_hash FROM users WHERE username = ? OR email = ? LIMIT 1');
+$stm = $pdo->prepare('SELECT user_id, username, email, password FROM users WHERE username = ? OR email = ? LIMIT 1');
 $stm->execute([$id, $id]);
 $user = $stm->fetch();
 
-if (!$user || !password_verify($password, $user['password_hash'] ?? '')) {
+if (!$user || !password_verify($password, $user['password'] ?? '')) {
     $errors[] = 'Invalid credentials';
 
     $_SESSION['login_errors'] = $errors;
